@@ -1,0 +1,14 @@
+{
+  "name": "verlon",
+  "owner": {
+    "name": "Verlon AI",
+    "url": "https://verlon.ai"
+  },
+  "plugins": [
+    {
+      "name": "verlon",
+      "source": "./",
+      "description": "Route Claude Code through Verlon: one-command connect, mid-session model switching, usage & cost insights on your dashboard."
+    }
+  ]
+}
