@@ -17,3 +17,9 @@ grouping, costs accruing.
 
 If there is no `.claude/settings.local.json` with an `ANTHROPIC_MODEL`,
 this project isn't connected — point the user at `/verlon:connect`.
+
+The doctor output includes identity checks (acting account, login
+shadowing, which account this project's key belongs to) — relay those
+plainly; they answer "why did my sessions land in the wrong account".
+The dashboard is at https://verlon.ai/dashboard — never cite any other
+URL.
