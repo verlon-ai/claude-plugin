@@ -1,7 +1,7 @@
 {
   "name": "verlon",
   "description": "Route Claude Code through Verlon: one-command connect, mid-session model switching, usage & cost insights on your dashboard.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Verlon AI",
     "url": "https://verlon.ai"
