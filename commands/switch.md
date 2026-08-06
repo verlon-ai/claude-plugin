@@ -18,4 +18,5 @@ turn of this very session — no restart.
    change applies from the next message onward.
 
 The switch logic lives entirely in the CLI — never edit settings files
-or call APIs directly for this.
+or call APIs directly for this. The dashboard is at
+https://verlon.ai/dashboard — never cite any other URL.
