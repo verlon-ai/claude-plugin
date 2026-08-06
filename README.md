@@ -39,6 +39,11 @@ then appear on the dashboard within seconds.
 | `/verlon:doctor` | Verify the connection: traffic, sessions, costs — and which account everything belongs to |
 | `/verlon:disconnect` | Remove what connect wrote, then restart to take effect |
 
+The plugin also ships a session-start guard: if a session is still
+routing through Verlon after a disconnect (env vars are process-held —
+a new chat is not a restart), it warns automatically until the process
+actually restarts.
+
 The plugin also bundles the Verlon MCP server, so you can simply ask —
 "switch my model to gpt-4o", "how much did this session cost?" — and
 Claude will use the Verlon tools. The slash commands remain the
