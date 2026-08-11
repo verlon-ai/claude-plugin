@@ -4,11 +4,18 @@ Route Claude Code through [Verlon](https://verlon.ai) — any model
 behind one gate, hot-swappable mid-session, with usage, cost, and cache
 insights on your dashboard.
 
+## Before installing
+
+You need Node.js on the machine (the plugin's commands run the Verlon
+CLI via `npx`). Check with `node --version`; install via
+`brew install node` (macOS) or `winget install OpenJS.NodeJS.LTS`
+(Windows) if missing.
+
 ## Install
 
-Open Claude Code and run these **one at a time** (the first registers
-Verlon's plugin source on your machine — nothing is published anywhere;
-the second installs the plugin from it):
+**Slash commands** — open Claude Code and run these **one at a time**
+(the first registers Verlon's plugin source on your machine — nothing
+is published anywhere; the second installs the plugin from it):
 
 ```
 /plugin marketplace add https://github.com/verlon-ai/claude-plugin
@@ -17,6 +24,12 @@ the second installs the plugin from it):
 ```
 /plugin install verlon
 ```
+
+**Or point-and-click (VS Code panel users)** — type `/plugins` in the
+prompt box to open the Manage plugins interface, add
+`https://github.com/verlon-ai/claude-plugin` under Marketplaces, then
+find **verlon** in the plugin list and click Install. No terminal
+needed.
 
 Then open Claude Code **in the project you want to connect** (the
 settings are written into the current project) and run:
