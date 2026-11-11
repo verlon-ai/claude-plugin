@@ -31,31 +31,31 @@ prompt box to open the Manage plugins interface, add
 find **verlon** in the plugin list and click Install. No terminal
 needed.
 
-Then open Claude Code **in the project you want to connect** (the
-settings are written into the current project) and run:
+Then run, from any folder:
 
 ```
 /verlon:connect
 ```
 
-…and restart Claude Code — settings are read at process start, so a new
-chat is not a restart; in VS Code, reload the window. Your sessions
-then appear on the dashboard within seconds.
+…and restart Claude Code once, so its telemetry starts (in VS Code,
+reload the window). Connect changes only your own Claude Code settings
+(`~/.claude/settings.json`, backed up first), never a file in any
+repository, and `/verlon:disconnect` puts them back exactly.
 
 ## Commands
 
 | Command | What it does |
 | --- | --- |
-| `/verlon:connect [gate-id]` | One-command setup: gate + key + settings, then verify |
-| `/verlon:switch <model>` | Route this session to another model — takes effect next turn, no restart |
-| `/verlon:models` | List routable models with live pricing + capability scores |
-| `/verlon:doctor` | Verify the connection: traffic, sessions, costs — and which account everything belongs to |
-| `/verlon:disconnect` | Remove what connect wrote, then restart to take effect |
+| `/verlon:connect [gate-id]` | One-command setup, once per machine |
+| `/verlon:switch on` / `off` | Move between Verlon and your Claude subscription, live: every running session follows from its next message |
+| `/verlon:switch` | Where requests go now |
+| `/verlon:model use <model-or-category>` | Choose what this repository runs on through Verlon (`--all` for every repository) |
+| `/verlon:models` | List the models, with live pricing and capability scores |
+| `/verlon:doctor` | Verify the connection, and which account everything belongs to |
+| `/verlon:disconnect` | Back to your Claude subscription, settings restored |
 
-The plugin also ships a session-start guard: if a session is still
-routing through Verlon after a disconnect (env vars are process-held —
-a new chat is not a restart), it warns automatically until the process
-actually restarts.
+While switched on, `/model` shows Verlon's rows: "Verlon: this repo's
+pick", your categories and the models your choices name.
 
 The plugin also bundles the Verlon MCP server, so you can simply ask —
 "switch my model to gpt-4o", "how much did this session cost?" — and
@@ -64,12 +64,11 @@ deterministic path.
 
 ## Design
 
-All setup and switching logic lives in `@verlon-ai/cli` — the plugin
-narrates and never improvises. Model routing is resolved server-side
-per request (the gate), which is what makes mid-session switching and
-dashboard-driven swaps possible with zero client changes.
+All setup and switching logic lives in `@verlon-ai/cli`: the plugin
+narrates and never improvises. Choices live on Verlon, keyed by
+repository, and apply at request time.
 
-Telemetry: `/verlon:connect` enables Claude Code's standard usage
-telemetry (metadata only — tokens, cost, tool timings; your code and
-prompts are not included) pointed at your own Verlon account. Remove
-the `OTEL_*` lines from `.claude/settings.local.json` to turn it off.
+Telemetry: connect turns on Claude Code's standard usage telemetry
+(metadata only: tokens, cost, tool timings; your code and prompts are
+not included), sent to your own Verlon account. `/verlon:disconnect`
+removes it.

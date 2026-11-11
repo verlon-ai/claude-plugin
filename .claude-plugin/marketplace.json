@@ -8,7 +8,7 @@
     {
       "name": "verlon",
       "source": "./",
-      "description": "Route Claude Code through Verlon: one-command connect, mid-session model switching, usage & cost insights on your dashboard."
+      "description": "Switch Claude Code between your Claude subscription and Verlon, live; choose models per repository; usage and cost on your dashboard."
     }
   ]
 }

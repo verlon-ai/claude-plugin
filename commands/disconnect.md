@@ -1,31 +1,22 @@
 ---
-description: Disconnect this project from Verlon (removes what connect wrote)
+description: Disconnect Claude Code from Verlon (puts your settings back exactly)
 allowed-tools: Bash(verlon *), Bash(npx -y @verlon-ai/cli@latest *)
 ---
 
-Disconnect this project's Claude Code from Verlon. The removal logic is
-entirely in the Verlon CLI — run it, then report; never edit
-.claude/settings.local.json yourself.
+Disconnect Claude Code from Verlon. The logic is entirely in the CLI:
+run it, then report; never edit settings files yourself.
 
-1. BEFORE running anything, tell the user this prominently (it must
-   reach them even if the rest of this command gets interrupted):
-   disconnecting only takes effect when the Claude Code process
-   restarts — **this session will keep routing through Verlon after
-   the disconnect until you restart**. A new chat is NOT a restart; in
-   VS Code, reload the window (Developer: Reload Window). To finish
-   the job: run this command, then restart.
-2. Run `verlon disconnect`. If `verlon` is not installed, run
-   `npx -y @verlon-ai/cli@latest disconnect` instead.
-3. If it reports nothing to disconnect, relay that — the project is not
-   connected.
-4. On success, relay the CLI's output and repeat the restart
-   instruction from step 1. Remind the user: the gate and its history
-   stay on the dashboard (https://verlon.ai/dashboard), and the minted
-   API key stays valid until revoked under Settings → API Keys.
+1. Run `verlon --format table disconnect` (or `npx -y @verlon-ai/cli@latest --format table disconnect`
+   if `verlon` is not installed).
+2. It first moves running sessions back to the user's Claude
+   subscription (they pick that up on their next message), then puts
+   `~/.claude/settings.json` back as it was before connect, keeping any
+   change the user made since.
+3. Relay the CLI's output. If it reports nothing to disconnect, relay
+   that.
+4. Remind the user that the gate and its history stay on the dashboard
+   (https://verlon.ai/dashboard), and the API key connect created stays
+   valid until revoked under Settings, API Keys.
 
-(A session-start check also ships with this plugin: if a later session
-in the same process is still routing after a disconnect, it will warn
-again automatically.)
-
-The dashboard is at https://verlon.ai/dashboard — never cite any other
+The dashboard is at https://verlon.ai/dashboard; never cite any other
 URL.

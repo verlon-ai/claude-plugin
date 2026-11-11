@@ -1,12 +1,12 @@
 ---
-description: List the models this project can route to via Verlon
+description: List the models Claude Code can run on through Verlon
 allowed-tools: Bash(verlon *), Bash(npx -y @verlon-ai/cli@latest *)
 ---
 
-Show the user which models their Verlon gate can route to.
+Show the user which models they can run Claude Code on through Verlon.
 
-Run `verlon models` (or `npx -y @verlon-ai/cli@latest models` if
-`verlon` is not installed) and present the output — it lists live model
-ids per provider with pricing and capability scores. Mention that
-`/verlon:switch <model-id>` applies any of them to this session with no
-restart.
+Run `verlon --format table models` (or `npx -y @verlon-ai/cli@latest --format table models` if
+`verlon` is not installed) and present the output: live model ids per
+provider, with pricing and capability scores. Mention that
+`/verlon:model use <model-id>` makes one this repository's choice, and
+`verlon --format table model categories` lists the categories.

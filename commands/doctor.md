@@ -1,25 +1,18 @@
 ---
 description: Verify the Verlon connection is healthy end-to-end
-allowed-tools: Bash(verlon *), Bash(npx -y @verlon-ai/cli@latest *), Bash(cat .claude/settings.local.json)
+allowed-tools: Bash(verlon *), Bash(npx -y @verlon-ai/cli@latest *)
 ---
 
-Verify this project's Verlon connection: traffic arriving, sessions
-grouping, costs accruing.
+Verify the Verlon connection: traffic arriving, sessions grouping,
+costs accruing.
 
-1. Read the connected gate id: it is the `ANTHROPIC_MODEL` value in
-   `.claude/settings.local.json` (strip any `/suffix`).
-2. Run `verlon doctor --gate <that-id>` (or
-   `npx -y @verlon-ai/cli@latest doctor --gate <that-id>`).
-3. Relay each check result. If a check fails, relay the CLI's reason
-   and hint verbatim — the messages are written to be actionable (e.g.
-   "no sessions yet: restart Claude Code and start a session, then
-   re-run").
+1. Run `verlon --format table doctor` (or `npx -y @verlon-ai/cli@latest --format table doctor`). It
+   reads the connection from the user's Claude Code settings.
+2. Relay each check. If one fails, relay the CLI's reason and hint
+   verbatim.
+3. If it says Claude Code isn't connected, point the user at
+   `/verlon:connect`.
 
-If there is no `.claude/settings.local.json` with an `ANTHROPIC_MODEL`,
-this project isn't connected — point the user at `/verlon:connect`.
-
-The doctor output includes identity checks (acting account, login
-shadowing, which account this project's key belongs to) — relay those
-plainly; they answer "why did my sessions land in the wrong account".
-The dashboard is at https://verlon.ai/dashboard — never cite any other
-URL.
+The output includes identity checks (acting account, login shadowing,
+which account the key belongs to): relay those plainly. The dashboard
+is at https://verlon.ai/dashboard; never cite any other URL.
