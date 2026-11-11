@@ -8,8 +8,8 @@ Move Claude Code between the user's own Claude subscription and Verlon.
 The switch changes the user's Claude Code settings, and every running
 session picks it up on its next message: no restart.
 
-1. Run `verlon switch $ARGUMENTS` (or
-   `npx -y @verlon-ai/cli@latest switch $ARGUMENTS` if `verlon` is not
+1. Run `verlon --format table switch $ARGUMENTS` (or
+   `npx -y @verlon-ai/cli@latest --format table switch $ARGUMENTS` if `verlon` is not
    installed). With no argument it only says where requests go now.
 2. Relay the CLI's output exactly, nothing added.
 3. If it refuses because this session is on a model that only runs

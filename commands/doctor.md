@@ -6,7 +6,7 @@ allowed-tools: Bash(verlon *), Bash(npx -y @verlon-ai/cli@latest *)
 Verify the Verlon connection: traffic arriving, sessions grouping,
 costs accruing.
 
-1. Run `verlon doctor` (or `npx -y @verlon-ai/cli@latest doctor`). It
+1. Run `verlon --format table doctor` (or `npx -y @verlon-ai/cli@latest --format table doctor`). It
    reads the connection from the user's Claude Code settings.
 2. Relay each check. If one fails, relay the CLI's reason and hint
    verbatim.

@@ -6,7 +6,7 @@ allowed-tools: Bash(verlon *), Bash(npx -y @verlon-ai/cli@latest *)
 Disconnect Claude Code from Verlon. The logic is entirely in the CLI:
 run it, then report; never edit settings files yourself.
 
-1. Run `verlon disconnect` (or `npx -y @verlon-ai/cli@latest disconnect`
+1. Run `verlon --format table disconnect` (or `npx -y @verlon-ai/cli@latest --format table disconnect`
    if `verlon` is not installed).
 2. It first moves running sessions back to the user's Claude
    subscription (they pick that up on their next message), then puts

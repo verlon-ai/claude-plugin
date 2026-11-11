@@ -7,7 +7,7 @@ allowed-tools: Bash(verlon *), Bash(npx -y @verlon-ai/cli@latest *)
 Connect Claude Code to Verlon. The setup logic is entirely in the
 Verlon CLI: run it, then report; never improvise the setup yourself.
 
-1. Run `verlon connect claude-code` (with `--gate $ARGUMENTS` if the
+1. Run `verlon --format table connect claude-code` (with `--gate $ARGUMENTS` if the
    user passed a gate id). If `verlon` is not installed, use
    `npx -y @verlon-ai/cli@latest` with the same arguments.
 2. Connect changes only the user's own Claude Code settings
@@ -16,10 +16,10 @@ Verlon CLI: run it, then report; never improvise the setup yourself.
 3. Without a Verlon login, the CLI starts the browser approval itself
    and prints a code: relay the URL and code, and tell the user to
    approve in the browser. It continues on its own.
-4. With several gates and no default it exits with `ambiguous_gate`.
-   Run `verlon gate list`, show the user's claude-code gates (name,
+4. If it says there are several claude-code gates and no default,
+   run `verlon --format table gate list`, show the user's claude-code gates (name,
    model, id, one per line), ask which to use, then re-run with
-   `--gate <their pick>`. `verlon gate set-default <id>` makes it the
+   `--gate <their pick>`. `verlon --format table gate set-default <id>` makes it the
    default for future connects.
 5. The CLI prints the account it acts as first: relay that line, and
    any warning about an environment key verbatim.
