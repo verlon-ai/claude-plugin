@@ -1,46 +1,32 @@
 ---
-description: Connect this project to Verlon (one command, then restart)
+description: Connect Claude Code to Verlon (one command, set up once)
 argument-hint: [gate-id]
 allowed-tools: Bash(verlon *), Bash(npx -y @verlon-ai/cli@latest *)
 ---
 
-Connect this project's Claude Code to Verlon. The setup logic is
-entirely in the Verlon CLI — run it, then report; never improvise the
-setup yourself.
+Connect Claude Code to Verlon. The setup logic is entirely in the
+Verlon CLI: run it, then report; never improvise the setup yourself.
 
-1. Run `verlon connect claude-code`. If the user passed an argument,
-   treat it as a gate id and run
-   `verlon connect claude-code --gate $ARGUMENTS` instead. If `verlon`
-   is not installed, use `npx -y @verlon-ai/cli@latest` with the same
-   arguments.
-2. Running from here is non-interactive, so the CLI resolves the gate
-   deterministically: the project's currently connected gate, else the
-   user's default gate, else a sole existing gate, else it creates the
-   first one. It never guesses between gates: with several gates and no
-   default it exits with code `ambiguous_gate`. When that happens, run
-   `verlon gate list`, show the user their claude-code gates in chat
-   (name, model, id — one per line), ask which to use — offering
-   "create a new one" as an option (`verlon connect claude-code`
-   creates one only when none exist; to create an additional gate,
-   point the user to the dashboard's New Claude Code gate button) —
-   then re-run `verlon connect claude-code --gate <their pick>`. If
-   they'd like that gate used for future connects too, mention
-   `verlon gate set-default <id>`.
-3. The CLI prints the account it is acting as first — relay that line.
-   If it warns that an environment key is shadowing a different login,
-   relay the warning verbatim and mention
-   `verlon connect claude-code --fresh` reconnects as the login
-   identity instead.
-4. If it fails with an authentication error, tell the user to run
-   `verlon login` in their terminal (it opens a browser), then re-run
-   this command.
-5. On success, relay the CLI's output faithfully, and finish by telling
-   the user clearly: **restart Claude Code now** — settings are read at
-   process start, a new chat is NOT a restart, and in VS Code that
-   means reloading the window (Developer: Reload Window). After
-   restarting, their sessions appear on the Verlon dashboard within
-   seconds.
+1. Run `verlon connect claude-code` (with `--gate $ARGUMENTS` if the
+   user passed a gate id). If `verlon` is not installed, use
+   `npx -y @verlon-ai/cli@latest` with the same arguments.
+2. Connect changes only the user's own Claude Code settings
+   (`~/.claude/settings.json`, backed up first), never a file in any
+   repository. Say so if the user asks.
+3. Without a Verlon login, the CLI starts the browser approval itself
+   and prints a code: relay the URL and code, and tell the user to
+   approve in the browser. It continues on its own.
+4. With several gates and no default it exits with `ambiguous_gate`.
+   Run `verlon gate list`, show the user's claude-code gates (name,
+   model, id, one per line), ask which to use, then re-run with
+   `--gate <their pick>`. `verlon gate set-default <id>` makes it the
+   default for future connects.
+5. The CLI prints the account it acts as first: relay that line, and
+   any warning about an environment key verbatim.
+6. On success, relay the output, then tell the user to **restart Claude
+   Code once** so telemetry starts (in VS Code: Developer: Reload
+   Window). After that, `/verlon:switch on` and `off` work live, with
+   no restart.
 
-Do not edit .claude/settings.local.json yourself. Do not paste API keys
-into the conversation. The dashboard is at
-https://verlon.ai/dashboard — never cite any other URL.
+Never paste API keys into the conversation. The dashboard is at
+https://verlon.ai/dashboard; never cite any other URL.
