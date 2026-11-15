@@ -57,10 +57,15 @@ routing through Verlon after a disconnect (env vars are process-held —
 a new chat is not a restart), it warns automatically until the process
 actually restarts.
 
-The plugin also bundles the Verlon MCP server, so you can simply ask —
-"switch my model to gpt-4o", "how much did this session cost?" — and
-Claude will use the Verlon tools. The slash commands remain the
-deterministic path.
+The plugin also points Claude Code at Verlon's MCP server, so once the
+project is connected you can simply ask — "switch my model to
+gpt-5.5", "show my recent requests" — and Claude will use the Verlon
+tools. Nothing extra runs on your machine: the server is hosted by
+Verlon and uses the key `/verlon:connect` set up, so it sees exactly
+what your account sees. Services you add with `verlon connectors add`
+show up in the same server. Until the project is connected, `/mcp`
+lists the Verlon server as failed; that clears after connecting and
+restarting. The slash commands remain the deterministic path.
 
 ## Design
 
