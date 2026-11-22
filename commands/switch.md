@@ -1,22 +1,25 @@
 ---
-description: Switch which model this session routes to (no restart)
-argument-hint: <model-id>
+description: Move Claude Code between your Claude plan and Verlon, or pick the model it runs on through Verlon
+argument-hint: on | off | <model-id>
 allowed-tools: Bash(verlon *), Bash(npx -y @verlon-ai/cli@latest *)
 ---
 
-Switch the Verlon gate this project routes through to a different
-model. The swap happens server-side, so it takes effect on the next
-turn of this very session — no restart.
+The switching logic lives entirely in the CLI: never edit settings files
+or call APIs directly. If `verlon` is not installed, use
+`npx -y @verlon-ai/cli@latest` with the same arguments.
 
-1. Run `verlon switch $ARGUMENTS` (or
-   `npx -y @verlon-ai/cli@latest switch $ARGUMENTS` if `verlon` is not
-   installed).
-2. If no model id was given, or the CLI reports the model is invalid,
-   run `verlon models` and show the user the available ids so they can
-   pick one.
-3. On success, relay the old → new model line and remind the user the
-   change applies from the next message onward.
+- **`on` or `off`:** run `verlon switch $ARGUMENTS`. `on` sends Claude
+  Code's requests through Verlon on the user's Verlon credit; `off`
+  goes back to their Claude plan. It takes effect on the next message,
+  with no restart. Relay the CLI's lines, including the one about
+  background calls being billed on Verlon.
+- **No argument:** run `verlon switch` and relay where this config's
+  requests go now.
+- **A model id:** run `verlon model use $ARGUMENTS`. It sets the model
+  this repository runs on through Verlon. If the CLI says the model is
+  unknown, run `verlon models` and show the user the ids so they can
+  pick one. If this config is on the Claude plan, tell them the model
+  applies once they run `/verlon:switch on`.
 
-The switch logic lives entirely in the CLI — never edit settings files
-or call APIs directly for this. The dashboard is at
-https://verlon.ai/dashboard — never cite any other URL.
+The dashboard is at https://verlon.ai/dashboard; never cite any other
+URL.
