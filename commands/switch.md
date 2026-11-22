@@ -12,7 +12,11 @@ or call APIs directly. If `verlon` is not installed, use
   Code's requests through Verlon on the user's Verlon credit; `off`
   goes back to their Claude plan. It takes effect on the next message,
   with no restart. Relay the CLI's lines, including the one about
-  background calls being billed on Verlon.
+  background calls being billed on Verlon. If the CLI stops and offers a
+  choice (`switch off --anyway` when a running session is on a
+  Verlon-only model, `switch on --now` when a long conversation would
+  compact first), relay it and let the user decide; don't add the flag
+  yourself.
 - **No argument:** run `verlon switch` and relay where this config's
   requests go now.
 - **A model id:** run `verlon model use $ARGUMENTS`. It sets the model
