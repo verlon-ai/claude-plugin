@@ -5,7 +5,8 @@ allowed-tools: Bash(verlon *), Bash(npx -y @verlon-ai/cli@latest *)
 
 Check this Claude config's Verlon connection.
 
-1. Run `verlon doctor` (or `npx -y @verlon-ai/cli@latest doctor`). It
+1. Run `verlon doctor --format table` (or
+   `npx -y @verlon-ai/cli@latest doctor --format table`). It
    checks the sign-in and network, and, when this config is connected,
    that Claude Code's usage reaches Verlon: sessions recorded, turns
    grouping, costs accruing.
