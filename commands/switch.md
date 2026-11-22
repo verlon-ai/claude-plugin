@@ -16,7 +16,8 @@ or call APIs directly. If `verlon` is not installed, use
 - **No argument:** run `verlon switch` and relay where this config's
   requests go now.
 - **A model id:** run `verlon model use $ARGUMENTS`. It sets the model
-  this repository runs on through Verlon. If the CLI says the model is
+  this repository (outside a repository, this folder) runs on through
+  Verlon. If the CLI says the model is
   unknown, run `verlon models` and show the user the ids so they can
   pick one. If this config is on the Claude plan, tell them the model
   applies once they run `/verlon:switch on`.

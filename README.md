@@ -49,7 +49,7 @@ a repository). Your sessions then appear on the dashboard within seconds.
 | --- | --- |
 | `/verlon:connect` | Connect Claude Code to Verlon, then restart |
 | `/verlon:switch on` / `off` | Move Claude Code to Verlon, or back to your Claude plan; takes effect next message, no restart |
-| `/verlon:switch <model>` | Pick the model this repository runs on through Verlon |
+| `/verlon:switch <model>` | Pick the model this repository (or folder) runs on through Verlon |
 | `/verlon:models` | List the models, with live pricing and capability scores |
 | `/verlon:doctor` | Check the connection: sessions, turns and costs reaching Verlon, and which account everything belongs to |
 | `/verlon:disconnect` | Restore Claude Code's settings and revoke the key connect made, then restart |
