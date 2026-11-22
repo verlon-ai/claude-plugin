@@ -6,9 +6,11 @@
 # and warns until the process actually restarts.
 #
 # Not stale (exit silently) when: this session isn't routed through
-# Verlon at all, or the settings on disk still carry the connection: the
-# active Claude config's user settings (CLAUDE_CONFIG_DIR, else
-# ~/.claude), where connect writes, or an older connect's project file.
+# Verlon at all, or the settings on disk still carry this connection
+# (this session's Verlon base URL): the active Claude config's user
+# settings (CLAUDE_CONFIG_DIR, else ~/.claude), where connect writes, or
+# an older connect's project file. A base URL of the user's own, which
+# disconnect restores, is not this connection.
 
 case "${ANTHROPIC_BASE_URL:-}" in
   *verlon.ai*) ;;
@@ -16,7 +18,7 @@ case "${ANTHROPIC_BASE_URL:-}" in
 esac
 
 for settings in "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/settings.json" "${CLAUDE_PROJECT_DIR:-.}/.claude/settings.local.json"; do
-  if [ -f "$settings" ] && grep -q 'ANTHROPIC_BASE_URL' "$settings" 2>/dev/null; then
+  if [ -f "$settings" ] && grep -qF "\"$ANTHROPIC_BASE_URL\"" "$settings" 2>/dev/null; then
     exit 0
   fi
 done
