@@ -6,8 +6,10 @@ allowed-tools: Bash(verlon *), Bash(npx -y @verlon-ai/cli@latest *)
 Connect Claude Code to Verlon. The setup logic is entirely in the
 Verlon CLI: run it, then report. Never improvise the setup yourself.
 
-1. Run `verlon connect claude-code`. If `verlon` is not installed, run
-   `npx -y @verlon-ai/cli@latest connect claude-code` instead.
+1. Run `verlon connect claude-code --format table`. If `verlon` is not
+   installed, run
+   `npx -y @verlon-ai/cli@latest connect claude-code --format table`
+   instead.
 2. It asks nothing: it uses the account's Claude Code setup (creating it
    on the first connect) and writes Claude Code's user settings for the
    active Claude config. If it opens a browser to approve this machine,

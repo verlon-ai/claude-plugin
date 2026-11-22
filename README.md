@@ -52,7 +52,7 @@ a repository). Your sessions then appear on the dashboard within seconds.
 | `/verlon:switch <model>` | Pick the model this repository (or folder) runs on through Verlon |
 | `/verlon:models` | List the models, with live pricing and capability scores |
 | `/verlon:doctor` | Check the connection: sessions, turns and costs reaching Verlon, and which account everything belongs to |
-| `/verlon:disconnect` | Restore Claude Code's settings and revoke the key connect made, then restart |
+| `/verlon:disconnect` | Restore Claude Code's settings and revoke the key connect made. The session stops going through Verlon from its next message: it carries on with your own Claude login (run `/login` if you have none), then restart |
 
 The plugin also ships a session-start guard: if a session is still
 routing through Verlon after a disconnect (env vars are process-held —
